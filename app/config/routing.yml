@@ -1,0 +1,4 @@
+nomina:
+    resource: "@NominaBundle/Resources/config/routing.yml"
+    prefix:   /
+

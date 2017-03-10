@@ -1,0 +1,7 @@
+nomina_usuario:
+    resource: "@NominaBundle/Resources/config/routing/usuario.yml"
+    prefix:   /usuario
+
+nomina_homepage:
+    path:     /
+    defaults: { _controller: NominaBundle:Default:index }

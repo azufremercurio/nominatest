@@ -1,0 +1,98 @@
+{% extends 'NominaBundle:Default:main.html.twig' %}
+{% block title 'Usuarios'%}
+
+    {% block content %}
+        <div class="row numpad">
+            <div class="col-lg-12">
+                <h1>Usuarios</h1>
+                <ol class="breadcrumb">
+                    <li><a href="javascript:"><i class="fa fa-home"></i> Inicio</a></li>
+                    <li><i class="fa fa-list"></i> Usuarios</li>
+                    <a class="btn btn-primary pull-right" href="{{ path('usuario_new') }}">Nuevo</a>
+                    <a class="btn btn-primary pull-right" href="{{ path('usuario_nomina') }}">Nomina</a>
+                </ol>
+            </div>
+        </div>
+
+        <div class="col-lg-12 table-responsive" style="overflow: auto; max-height: 450px;">
+            <table class="table table-bordered table-hover tablesorter records_list table-striped">
+                <thead>
+                    <tr>
+                        <th>Nombre del Usuario</th>
+                        <th>Cédula</th>
+                        <th>Salario</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for usuario in usuarios %}
+                        <tr>
+                            <td>{{ usuario.usuName }}</td>
+                            <td class="text-right">{{ usuario.usuCedula }}</td>
+                            <td class="number_format text-right">$ {{ usuario.usuSalary }}</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('usuario_show', { 'id': usuario.id }) }}">Ver</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('usuario_edit', { 'id': usuario.id }) }}">Editar</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:" class="userDelete" idUser='{{ usuario.id }}'>Eliminar</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="4">No Hay Usuarios Registrados</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    {% endblock %}
+
+    {% block scripts %}
+        $('.userDelete').click(function() {
+            var idUser = $(this).attr('idUser');
+            var trObject = $(this).closest('tr');
+            bootbox.confirm("xxxxxx", function(r){
+                if(r){
+                    var deleted = deleteUser(idUser);
+                    if(deleted){
+                        $(trObject).remove();
+                    }
+                }
+            });
+        });
+    {% endblock %}
+
+    {% block jsfunctions %}    
+        
+        function deleteUser(idUser){
+            if(!(idUser > 0)){
+                return false;
+            }
+            
+            var response = false;
+            $.ajax({
+                type: 'post',
+                url: '{{ path('usuario_delete_ajax') }}',
+                dataType: 'json',
+                data: {idUser: idUser},
+                async: false,
+                success: function(data){
+                    if(data.msn == '__OK__'){
+                        response = true;
+                    }
+                }
+            });
+            
+            return response;
+        }
+        
+    {% endblock %}
+    

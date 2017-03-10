@@ -1,0 +1,46 @@
+<?php
+
+namespace NominaBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Usuario
+ *
+ * @ORM\Table(name="usuario")
+ * @ORM\Entity
+ */
+class Usuario {
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="usu_name", type="string", length=80, nullable=false)
+     */
+    private $usuName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="usu_cedula", type="string", length=20, nullable=true)
+     */
+    private $usuCedula;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="usu_salary", type="decimal", precision=10, scale=2, nullable=true)
+     */
+    private $usuSalary;
+
+
+}

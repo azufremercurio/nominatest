@@ -1,0 +1,42 @@
+{% extends 'NominaBundle:Default:main.html.twig' %}
+{% block title 'Usuarios'%}
+
+    {% block content %}
+        <div class="row numpad">
+            <div class="col-lg-12">
+                <h1>Nuevo Usuario</h1>
+                <ol class="breadcrumb">
+                    <li><a href="javascript:"><i class="fa fa-home"></i> Inicio</a></li>
+                    <li><a href='{{ path('usuario_index') }}'><i class="fa fa-list"></i> Usuarios</a></li>
+                    <li><i class="fa fa-edit"></i> Nuevo</li>
+                    <a class="btn btn-primary pull-right" href="{{ path('usuario_index') }}">Volver al listado</a>
+                </ol>
+            </div>
+        </div>
+
+        <div class="col-sm-12 table-responsive">
+
+            {{ form_start(form) }}
+            <div class="form-group col-sm-6">
+                <h4>Dato Principales</h4>
+                <div class="form-group">
+                    {{ form_label(form.usuName) }}
+                    {{ form_widget(form.usuName) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.usuCedula) }}
+                    {{ form_widget(form.usuCedula) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.usuSalary) }}
+                    {{ form_widget(form.usuSalary) }}
+                </div>
+
+                <hr>
+                <div class="form-group col-sm-12">
+                    <input type="submit" class="btn btn-primary" value="Guardar" />
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    {% endblock %}

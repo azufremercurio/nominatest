@@ -1,0 +1,34 @@
+usuario_index:
+    path:     /
+    defaults: { _controller: "NominaBundle:Usuario:index" }
+    methods:  GET
+
+usuario_show:
+    path:     /{id}/show
+    defaults: { _controller: "NominaBundle:Usuario:show" }
+    methods:  GET
+
+usuario_new:
+    path:     /new
+    defaults: { _controller: "NominaBundle:Usuario:new" }
+    methods:  [GET, POST]
+
+usuario_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "NominaBundle:Usuario:edit" }
+    methods:  [GET, POST]
+
+usuario_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "NominaBundle:Usuario:delete" }
+    methods:  DELETE
+
+usuario_delete_ajax:
+    path:     /deleteUser
+    defaults: { _controller: "NominaBundle:Usuario:deleteUser" }
+    methods:  POST
+
+usuario_nomina:
+    path:     /nominaUser
+    defaults: { _controller: "NominaBundle:Usuario:showNomina" }
+
